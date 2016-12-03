@@ -21,17 +21,40 @@ class RockPaperScissors(webapp2.RequestHandler):
         play_rock_paper_scissors(move, self)
 
 
-def play_rock_paper_scissors(move, self):
+def play_rock_paper_scissors(move, handler):
     """this plays rock paper scissors"""
 
-    num = random.randint(0, 3)
+    comp = random.choice(['rock', 'paper', 'scissors'])
     move = move.lower()
+
+    game = {
+            "rock": {
+                    'rock'      : "I chose Rock too. We Tie",
+                    'paper'     : "I chose Paper. You Lose",
+                    'scissors'  : "I chose Scissors. You Win",
+                    },
+            "paper": {
+                    'paper'     : "I chose Paper too. We Tie",
+                    'scissors'  : "I chose Scissors. You Lose",
+                    'rock'      : "I chose Rock. You Win",
+                    },
+            "scissors": {
+                    'scissors'  : "I chose Scissors too. We Tie",
+                    'rock'      : "I chose Rock. You Lose",
+                    'paper'     : "I chose Paper. You Win",
+                    },
+        }
+
+    handler.response.write(game.get(move).get(comp))
+
+
+
 
     # User picks rock
     if move == "rock":
-        if num == 0:
+        if comp == 'rock':
             self.response.write('I chose Rock too. We tie')
-        elif num == 1:
+        elif comp == 1:
             self.response.write('I chose Paper. You Lose')
         else:
             self.response.write('I chose Scissors. You Win')
