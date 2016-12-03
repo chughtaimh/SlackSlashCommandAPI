@@ -8,7 +8,7 @@ class Home(webapp2.RequestHandler):
     def get(self):
         """Receives a GET request"""
 
-        self.response.write('Hello, DevelopHerDevelopHim Viewers!')
+        self.response.write('Hello, Developers!')
 
 
 class RockPaperScissors(webapp2.RequestHandler):
